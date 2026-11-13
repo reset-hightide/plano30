@@ -139,9 +139,14 @@ th{color:var(--mute);font-weight:600;font-size:12px}
 .tb.p{background:var(--acc);color:var(--onacc)}
 .reset{display:block;margin:18px auto 0;background:none;border:none;color:var(--mute);text-decoration:underline;font-size:14px}
 .msg{font-size:13px;margin-top:8px;color:var(--ok)}
-.assist{position:fixed;left:0;top:50%;height:min(48vh,340px);width:auto;max-width:none;z-index:30;pointer-events:none;transform:translate(-110%,-50%);animation:assist 1.7s cubic-bezier(.2,.7,.4,1) forwards}
-@keyframes assist{0%{transform:translate(-110%,-50%)}22%{transform:translate(calc(50vw - 50%),-50%)}70%{transform:translate(calc(50vw - 50%),-50%)}100%{transform:translate(100vw,-50%)}}
-@media (prefers-reduced-motion:reduce){.assist{animation:assistFade 1.7s forwards;transform:translate(calc(50vw - 50%),-50%)}@keyframes assistFade{0%,80%{opacity:1}100%{opacity:0}}}
+.assist{position:fixed;left:0;top:50%;z-index:30;pointer-events:none;transform:translate(-100%,-50%);visibility:hidden}
+.assist.go{visibility:visible;animation:assistX 2.6s forwards}
+.assist img{display:block;height:min(48vh,340px);width:auto;max-width:none}
+.assist.go img{animation:walk .14s steps(1) 1.85s 5 alternate}
+/* entra pela esquerda, faz o shoryureppa parado, sai andando rápido para a direita */
+@keyframes assistX{0%{transform:translate(-100%,-50%);animation-timing-function:cubic-bezier(.2,.8,.3,1)}14%{transform:translate(calc(50vw - 60%),-50%)}70%{transform:translate(calc(50vw - 60%),-50%);animation-timing-function:linear}100%{transform:translate(100vw,-50%)}}
+@keyframes walk{0%{transform:translateY(0)}50%{transform:translateY(-7px) rotate(-2deg)}100%{transform:translateY(0) rotate(1deg)}}
+@media (prefers-reduced-motion:reduce){.assist.go{animation:assistFade 2s forwards;transform:translate(calc(50vw - 60%),-50%)}.assist.go img{animation:none}@keyframes assistFade{0%,80%{opacity:1}100%{opacity:0}}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
@@ -984,13 +989,21 @@ document.getElementById("impb").onclick=()=>document.getElementById("impf").clic
 document.getElementById("impf").onchange=e=>{const f=e.target.files[0];if(!f)return;const fr=new FileReader();fr.onload=()=>importData(String(fr.result));fr.readAsText(f);e.target.value=""};
 
 // ---------- assist do treino concluído: Ken entra pela esquerda e sai pela direita ----------
-const fired=new Set();
+// o GIF toca uma vez só; um endereço novo a cada vez faz ele começar do primeiro quadro
+let kenBlob=null;
+fetch("ken-transparente.gif").then(r=>r.ok?r.blob():null).then(b=>{kenBlob=b}).catch(()=>{});
 function assist(){
-  if(fired.has(day))return; fired.add(day);
+  document.querySelectorAll(".assist").forEach(x=>x.remove());
   try{const a=document.getElementById("sfx");a.currentTime=0;const p=a.play();if(p)p.catch(()=>{})}catch(e){}
-  const img=document.createElement("img");img.src="ken-upercut.gif";img.alt="";img.className="assist";
-  img.addEventListener("animationend",()=>img.remove());setTimeout(()=>img.remove(),2500);
-  document.body.appendChild(img);
+  const wrap=document.createElement("div");wrap.className="assist";
+  const img=document.createElement("img");img.alt="";
+  const url=kenBlob?URL.createObjectURL(kenBlob):"ken-transparente.gif?"+Date.now();
+  // só começa a andar quando a imagem carregou (senão o tamanho ainda é 0)
+  img.onload=img.onerror=()=>wrap.classList.add("go");
+  img.src=url;wrap.appendChild(img);
+  const done=()=>{wrap.remove();if(kenBlob)URL.revokeObjectURL(url)};
+  wrap.addEventListener("animationend",e=>{if(e.target===wrap)done()});setTimeout(done,4500);
+  document.body.appendChild(wrap);
 }
 
 // ---------- cronômetro ----------
