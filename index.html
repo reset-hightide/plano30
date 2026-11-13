@@ -144,6 +144,9 @@ th{color:var(--mute);font-weight:600;font-size:12px}
 .tb.p{background:var(--acc);color:var(--onacc)}
 .reset{display:block;margin:18px auto 0;background:none;border:none;color:var(--mute);text-decoration:underline;font-size:14px}
 .msg{font-size:13px;margin-top:8px;color:var(--ok)}
+.assist{position:fixed;left:0;top:50%;height:min(48vh,340px);width:auto;max-width:none;z-index:30;pointer-events:none;transform:translate(-110%,-50%);animation:assist 1.7s cubic-bezier(.2,.7,.4,1) forwards}
+@keyframes assist{0%{transform:translate(-110%,-50%)}22%{transform:translate(calc(50vw - 50%),-50%)}70%{transform:translate(calc(50vw - 50%),-50%)}100%{transform:translate(100vw,-50%)}}
+@media (prefers-reduced-motion:reduce){.assist{animation:assistFade 1.7s forwards;transform:translate(calc(50vw - 50%),-50%)}@keyframes assistFade{0%,80%{opacity:1}100%{opacity:0}}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -295,6 +298,7 @@ th{color:var(--mute);font-weight:600;font-size:12px}
   </div>
 </div>
 
+<audio id="sfx" src="shoryureppa.mp3" preload="auto"></audio>
 <div class="timer">
   <button class="tb" data-t="60">60s</button>
   <button class="tb" data-t="90">90s</button>
@@ -847,7 +851,7 @@ document.addEventListener("click",e=>{
   const tab=e.target.closest(".tab");
   if(tab){showTab(tab.dataset.v);return}
   if(e.target===document.getElementById("sheet")){closeSheet();return}
-  const lb=e.target.closest("[data-lv]"); if(lb){setLv(day,shK,+lb.dataset.lv);closeSheet();afterCheck();return}
+  const lb=e.target.closest("[data-lv]"); if(lb){const was=lv(day,shK);if(shK==="treino"&&!was)assist();setLv(day,shK,+lb.dataset.lv);closeSheet();afterCheck();return}
   if(e.target.id==="shClear"){setLv(day,shK,0);closeSheet();afterCheck();return}
   if(e.target.id==="shCancel"){closeSheet();return}
   const wt=e.target.closest("[data-water]"); if(wt){const ml=clamp(water(day)+ +wt.dataset.water,0,6000);const r=mut(day);r.water=ml;setLv(day,"agua",waterLv(ml));afterCheck();return}
@@ -865,7 +869,7 @@ document.addEventListener("click",e=>{
   const dd=e.target.closest("[data-day]"); if(dd){day=+dd.dataset.day;renderDay();return}
   const c=e.target.closest(".chk[data-c]"); if(c){openSheet(c.dataset.c);return}
   const s=e.target.closest(".set[data-s]"); if(s){const r=mut(day);r.done=r.done||{};const v=!r.done[s.dataset.s];if(v)r.done[s.dataset.s]=true;else delete r.done[s.dataset.s];s.classList.toggle("done",v);saveLocal();prog();if(v)start(+s.dataset.rest);
-    if(v&&!lv(day,"treino")&&!document.querySelector("#workout .set:not(.done)"))openSheet("treino");
+    if(v&&!document.querySelector("#workout .set:not(.done)")){assist();if(!lv(day,"treino"))openSheet("treino")}
     return}
   const del=e.target.closest("[data-del]"); if(del){st.med.splice(+del.dataset.del,1);markDirty("medidas");renderMed();return}
 });
@@ -894,6 +898,16 @@ document.getElementById("cpy").onclick=()=>{const t=backupJson();
   try{navigator.clipboard.writeText(t).then(()=>msg("Backup copiado. Cole num e-mail ou nota para guardar."),()=>msg("Não deu para copiar aqui."))}catch(e){msg("Não deu para copiar aqui.")}};
 document.getElementById("impb").onclick=()=>document.getElementById("impf").click();
 document.getElementById("impf").onchange=e=>{const f=e.target.files[0];if(!f)return;const fr=new FileReader();fr.onload=()=>importData(String(fr.result));fr.readAsText(f);e.target.value=""};
+
+// ---------- assist do treino concluído: Ken entra pela esquerda e sai pela direita ----------
+const fired=new Set();
+function assist(){
+  if(fired.has(day))return; fired.add(day);
+  try{const a=document.getElementById("sfx");a.currentTime=0;const p=a.play();if(p)p.catch(()=>{})}catch(e){}
+  const img=document.createElement("img");img.src="ken-upercut.gif";img.alt="";img.className="assist";
+  img.addEventListener("animationend",()=>img.remove());setTimeout(()=>img.remove(),2500);
+  document.body.appendChild(img);
+}
 
 // ---------- cronômetro ----------
 let end=0,iv=null,actx=null; const tv=document.getElementById("tval");
