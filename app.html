@@ -257,6 +257,14 @@ th{color:var(--mute);font-weight:600;font-size:12px}
 
 <!-- REGRAS -->
 <section class="view" id="v-regras">
+  <div class="block meal"><div class="btitle">Objetivo: o físico do Capitão América</div>
+    <div class="how" style="margin-top:4px">O visual do Chris Evans saindo da máquina é um "V": ombros largos, costas largas, peito alto e cheio, braços grandes e cintura fina, com pouca gordura.</div><ul>
+    <li><b>O que o treino prioriza:</b> ombro lateral e posterior (D e C), dorsal (C), peito superior (A e D), bíceps e tríceps (A, C e D). Peito, ombros e braços são treinados 2× por semana.</li>
+    <li><b>Pernas:</b> fortes e atléticas (B), sem exagero no volume.</li>
+    <li><b>Cintura fina vem da dieta:</b> descer a gordura para ~12% é o que faz os ombros e o peito aparecerem. Para 1,77 m isso fica perto de 80–82 kg, se você ganhar músculo no caminho.</li>
+    <li><b>Prazo:</b> até o fim de 2027 dá para chegar bem perto, se manter o treino e a dieta. O ator teve meses de preparo com treinador e nutricionista, e a cena do filme ainda tem pump, luz e maquiagem.</li>
+    <li><b>Depois de secar:</b> passe a manter (+300 kcal) e deixe as cargas subirem. Cada kg de músculo nos ombros e nas costas aproxima mais do físico do que cada kg perdido na balança.</li>
+  </ul></div>
   <div class="block meal"><div class="btitle">Os 7 mandamentos</div><ul>
     <li><b>Proteína em toda refeição</b> — 180 g/dia é o que segura o músculo no déficit.</li>
     <li><b>Sobrecarga progressiva:</b> bateu o topo das reps em todas as séries? Sobe a carga na próxima.</li>
@@ -360,7 +368,45 @@ const F = {
     ${head(80,16)}${pl("80,23 80,58")}${pl("80,58 78,84 86,88")}${pl("80,58 82,84 90,88")}${pl("80,28 70,34 68,28")}`),
   bike: W(`<circle cx="46" cy="82" r="16" stroke="#9a9a9a" stroke-width="3"/><circle cx="114" cy="82" r="16" stroke="#9a9a9a" stroke-width="3"/>
     <polyline points="46,82 70,82 98,56 64,56 70,82" stroke="#9a9a9a" stroke-width="3"/><line x1="98" y1="56" x2="114" y2="82" stroke="#9a9a9a" stroke-width="3"/>
-    ${head(80,22)}${pl("78,29 68,54")}${pl("68,54 84,66 72,82")}${pl("78,34 98,48")}`)
+    ${head(80,22)}${pl("78,29 68,54")}${pl("68,54 84,66 72,82")}${pl("78,34 98,48")}`),
+  // ---- treino original (Peito + Braços) ----
+  supinoReto: W(`<line x1="34" y1="64" x2="116" y2="64" ${EQ}/><line x1="44" y1="66" x2="44" y2="100" ${EQ}/><line x1="106" y1="66" x2="106" y2="100" ${EQ}/>
+    ${head(38,55)}<polyline points="46,57 94,57" ${B}/><polyline points="94,57 112,64 114,98" ${B}/>
+    <polyline points="58,57 56,42 60,28" ${B}/>${plate(60,24,10)}`),
+  supinoInc: W(`<line x1="52" y1="40" x2="90" y2="78" ${EQ}/><line x1="90" y1="78" x2="118" y2="78" ${EQ}/><line x1="98" y1="80" x2="98" y2="100" ${EQ}/>
+    ${head(50,34)}<polyline points="55,41 87,71" ${B}/><polyline points="87,71 112,71 112,98" ${B}/>
+    <polyline points="60,46 58,32 62,18" ${B}/>${plate(62,14,9)}`),
+  crossover: W(`${tower(8)}${tower(142)}<circle cx="18" cy="16" r="3" fill="#555"/><circle cx="142" cy="16" r="3" fill="#555"/>
+    <line x1="18" y1="16" x2="77" y2="58" ${CB}/><line x1="142" y1="16" x2="83" y2="58" ${CB}/>
+    ${head(80,24)}<line x1="80" y1="31" x2="80" y2="64" ${B}/><polyline points="72,99 80,64 88,99" ${B}/>
+    <polyline points="80,36 66,46 77,58" ${B}/><polyline points="80,36 94,46 83,58" ${B}/>`),
+  scott: W(`<line x1="74" y1="50" x2="100" y2="72" ${EQ}/><line x1="88" y1="66" x2="88" y2="100" ${EQ}/><line x1="50" y1="72" x2="72" y2="72" ${EQ}/><line x1="60" y1="74" x2="60" y2="100" ${EQ}/>
+    ${head(58,22)}<polyline points="58,29 62,68" ${B}/><polyline points="62,68 82,70 82,98" ${B}/>
+    <polyline points="62,36 92,64 102,42" ${B}/>${plate(103,38,7)}`),
+  frances: W(`${tower(8)}<circle cx="18" cy="14" r="3" fill="#555"/><line x1="18" y1="14" x2="106" y2="18" ${CB}/>
+    ${head(84,26)}<polyline points="80,33 70,64" ${B}/><polyline points="58,99 70,64 90,99" ${B}/>
+    <polyline points="80,36 92,16 106,18" ${B}/>`),
+  bayesian: W(`${tower(8)}<circle cx="18" cy="92" r="3" fill="#555"/><line x1="18" y1="92" x2="88" y2="46" ${CB}/>
+    ${head(82,22)}<line x1="81" y1="29" x2="78" y2="63" ${B}/><polyline points="66,99 78,63 92,99" ${B}/>
+    <polyline points="80,34 70,54 88,46" ${B}/>`),
+  corda: W(`${tower(142)}<circle cx="142" cy="14" r="3" fill="#555"/><line x1="142" y1="14" x2="92" y2="56" ${CB}/>
+    <line x1="92" y1="56" x2="88" y2="70" stroke="#c0882e" stroke-width="3"/><line x1="92" y1="56" x2="96" y2="70" stroke="#c0882e" stroke-width="3"/>
+    ${head(76,22)}<line x1="75" y1="29" x2="70" y2="63" ${B}/><polyline points="62,99 70,63 80,99" ${B}/>
+    <polyline points="74,34 78,52 90,70" ${B}/>`),
+  unilateral: W(`${tower(142)}<circle cx="142" cy="14" r="3" fill="#555"/><line x1="142" y1="14" x2="92" y2="66" ${CB}/>
+    <rect x="88" y="64" width="8" height="5" fill="#555"/>
+    ${head(76,22)}<line x1="75" y1="29" x2="70" y2="63" ${B}/><polyline points="62,99 70,63 80,99" ${B}/>
+    <polyline points="74,34 78,52 92,66" ${B}/><polyline points="74,34 66,46 70,56" stroke="currentColor" stroke-width="2.5" opacity=".5"/>`),
+  // ---- treinos derivados ----
+  barra: W(`<line x1="36" y1="8" x2="124" y2="8" ${EQ}/>${head(80,24)}${pl("80,31 80,66")}${pl("80,66 74,84 82,94")}${pl("80,34 62,24 66,8")}${pl("80,34 98,24 94,8")}`),
+  remadaCurv: W(`${head(104,34)}${pl("66,60 96,42")}${pl("66,60 72,80 64,99")}${pl("66,60 76,80 80,99")}${pl("96,44 92,58 96,68")}${plate(96,72,9)}`),
+  pulldownBr: W(`${tower(142)}<circle cx="142" cy="14" r="3" fill="#555"/><line x1="142" y1="14" x2="100" y2="62" ${CB}/>${head(76,22)}${pl("75,29 70,63")}${pl("62,99 70,63 80,99")}${pl("75,34 100,62")}<line x1="94" y1="62" x2="106" y2="62" ${HD}/>`),
+  facePull: W(`${tower(142)}<circle cx="142" cy="28" r="3" fill="#555"/><line x1="142" y1="28" x2="98" y2="26" ${CB}/>${head(76,22)}${pl("75,29 72,63")}${pl("64,99 72,63 82,99")}${pl("76,34 90,16 98,26")}`),
+  remadaUni: W(`<line x1="40" y1="66" x2="96" y2="66" ${EQ}/><line x1="50" y1="68" x2="50" y2="100" ${EQ}/><line x1="88" y1="68" x2="88" y2="100" ${EQ}/>${head(98,42)}${pl("44,50 88,46")}${pl("44,50 52,64 70,64")}${pl("44,50 32,74 28,99")}${pl("84,47 84,64")}${pl("90,48 104,58 104,70")}${db(104,76)}`),
+  stiff: W(`${head(110,46)}${pl("72,58 102,52")}${pl("72,58 70,99")}${pl("72,58 78,99")}${pl("100,54 98,84")}${plate(98,88,9)}`),
+  avanco: W(`${head(78,20)}${pl("78,27 78,62")}${pl("78,62 100,74 104,99")}${pl("78,62 60,92 42,99")}${pl("78,32 72,48 72,58")}${db(72,64)}`),
+  roscaInc: W(`<line x1="52" y1="34" x2="86" y2="76" ${EQ}/><line x1="86" y1="76" x2="116" y2="76" ${EQ}/><line x1="96" y1="78" x2="96" y2="100" ${EQ}/>${head(52,28)}${pl("56,35 84,70")}${pl("84,70 110,70 110,98")}${pl("62,44 60,66 74,56")}${db(78,54)}`),
+  paralelas: W(`<line x1="50" y1="54" x2="110" y2="54" ${EQ}/><line x1="56" y1="56" x2="56" y2="100" ${EQ}/><line x1="104" y1="56" x2="104" y2="100" ${EQ}/>${head(82,16)}${pl("82,23 80,60")}${pl("80,60 70,78 78,92")}${pl("82,30 70,42 80,54")}`),
 };
 
 const X = {
@@ -386,29 +432,71 @@ const X = {
   hiperext:{n:"Hiperextensão lombar", m:"Lombar · glúteo · 12–15", f:"hiperext", how:"suba só até alinhar o corpo"},
   elevLat:{n:"Elevação lateral", m:"Ombro lateral · 12–15", f:"elevLat", how:"até a linha do ombro, sem balanço"},
   deadbug:{n:"Dead bug", m:"Core · 10/lado", f:"deadbug", q:"dead bug exercício", how:"lombar colada, braço e perna opostos"},
-  cruzInv:{n:"Crucifixo inverso na máquina", m:"Ombro posterior · 12–15", f:"cruzInv", q:"crucifixo inverso máquina", how:"peito no apoio, abra os braços para trás"}
+  cruzInv:{n:"Crucifixo inverso na máquina", m:"Ombro posterior · 12–15", f:"cruzInv", q:"crucifixo inverso máquina", how:"peito no apoio, abra os braços para trás"},
+  // treino original — Peito + Braços
+  oSupReto:{n:"Supino reto", m:"Peito", f:"supinoReto"},
+  oSupInc:{n:"Supino inclinado", m:"Peito superior", f:"supinoInc"},
+  oCross:{n:"Crucifixo / crossover nas duas polias", m:"Peito", f:"crossover", q:"crossover polia peito"},
+  oScott:{n:"Rosca Scott", m:"Bíceps", f:"scott", how:"cotovelo apoiado, desça até quase esticar"},
+  oFrances:{n:"Tríceps francês na polia", m:"Tríceps", f:"frances", how:"cotovelos apontados para a frente, estique acima da cabeça"},
+  oBayes:{n:"Rosca Bayesian", m:"Bíceps", f:"bayesian", q:"bayesian curl polia", how:"cotovelo atrás do corpo, sem mexer o ombro"},
+  oCorda:{n:"Tríceps corda", m:"Tríceps", f:"corda", how:"abra a corda no fim do movimento"},
+  oMartelo:{n:"Rosca martelo", m:"Bíceps · 10–12", f:"martelo", how:"palmas viradas uma para a outra"},
+  oUnil:{n:"Tríceps unilateral na polia", m:"Tríceps · 10–15", f:"unilateral", how:"um braço de cada vez, cotovelo colado"},
+  // derivados (mesmo formato do original)
+  barra:{n:"Barra fixa (ou puxada alta pegada aberta)", m:"Costas · largura", f:"barra", q:"barra fixa pegada pronada"},
+  remadaCurv:{n:"Remada curvada com barra", m:"Costas · espessura", f:"remadaCurv"},
+  pulldownBr:{n:"Pulldown de braço estendido na polia", m:"Dorsal", f:"pulldownBr", q:"pulldown braço estendido polia"},
+  remadaBx2:{n:"Remada baixa no triângulo", m:"Costas", f:"remadaBaixa", q:"remada baixa triângulo", how:"peito alto, puxe até o umbigo e aperte as escápulas"},
+  facePull:{n:"Face pull na corda", m:"Ombro posterior · 15", f:"facePull", q:"face pull corda", how:"puxe a corda até a testa, cotovelos altos"},
+  remadaUni:{n:"Remada unilateral com halter", m:"Costas · 10/lado", f:"remadaUni", q:"remada unilateral halter serrote", how:"puxe o halter em direção ao quadril"},
+  rosca2:{n:"Rosca direta com barra W", m:"Bíceps", f:"roscaW", how:"costas paradas, sem balançar"},
+  desenvH:{n:"Desenvolvimento com halteres", m:"Ombros", f:"desenv", q:"desenvolvimento com halteres sentado"},
+  supIncH:{n:"Supino inclinado com halteres", m:"Peito superior", f:"supinoInc", q:"supino inclinado halteres"},
+  elevLatP:{n:"Elevação lateral unilateral na polia", m:"Ombro lateral", f:"elevLat", q:"elevação lateral polia unilateral"},
+  elevLatH:{n:"Elevação lateral com halteres", m:"Ombro lateral · 12–20", f:"elevLat", how:"suba até a linha do ombro, desça em 2 s"},
+  cruzInvP:{n:"Crucifixo inverso no peck deck", m:"Ombro posterior · 15", f:"cruzInv", q:"crucifixo inverso peck deck", how:"abra os braços para trás, sem encolher o pescoço"},
+  roscaInc:{n:"Rosca inclinada com halteres", m:"Bíceps", f:"roscaInc", q:"rosca inclinada halteres", how:"braço pendurado atrás do corpo, suba sem tirar o cotovelo do lugar"},
+  paralelas:{n:"Mergulho nas paralelas", m:"Tríceps · peito", f:"paralelas", q:"mergulho nas paralelas tríceps", how:"tronco reto, desça até 90° no cotovelo"},
+  agacha2:{n:"Agachamento livre", m:"Quadríceps · glúteo", f:"agacha"},
+  legpress2:{n:"Leg press 45°", m:"Quadríceps · glúteo", f:"legpress"},
+  stiff:{n:"Stiff com barra", m:"Posterior · glúteo", f:"stiff", q:"stiff com barra"},
+  avanco:{n:"Avanço com halteres", m:"Pernas · 10/lado", f:"avanco", q:"avanço passada com halteres", how:"passo longo, joelho de trás quase no chão"}
 };
-const SS=(a,b,s,r,rest)=>({pair:[X[a],X[b]],s,r,rest});
+// bloco: g = seção, s = séries/voltas, r = reps, rest = descanso (s), ex = 1 exercício (séries) ou 2 (supersérie A+B), how = dica
+const BL=(g,ex,s,r,rest,how)=>({g,ex:ex.map(k=>X[k]),s,r,rest,how});
 const T = {
-  A:{name:"Treino A — Costas + Bíceps", extra:"Fechar com 20 min de bike leve (consegue conversar).", ex:[
-    SS("puxada","roscaW",3,"8–12 reps",90),
-    SS("remadaArt","bicicleta",3,"8–12 reps",90),
-    SS("remadaBaixa","martelo",2,"10–12 reps",75)
+  A:{name:"Treino A — Peito + Braços", extra:"Seu treino original, do jeito que você montou. Fechar com 20 min de bike leve se der tempo.", ex:[
+    BL("Peito",["oSupReto"],3,"8–12 reps",120,"Escápulas retraídas, desça a barra até o meio do peito."),
+    BL("Peito",["oSupInc"],3,"8–12 reps",90,"Banco a ~30°. Desça até a parte alta do peito."),
+    BL("Peito",["oCross"],3,"12–15 reps",60,"Cotovelos levemente flexionados, junte as mãos à frente e segure 1 s."),
+    BL("Braços — Superséries",["oScott","oFrances"],3,"8–12 reps",90),
+    BL("Braços — Superséries",["oBayes","oCorda"],2,"10–15 reps",75),
+    BL("Braços — Superséries",["oMartelo","oUnil"],2,"10–15 reps",75)
   ]},
-  B:{name:"Treino B — Pernas", extra:"Antes: 10 min de mobilidade (quadril e tornozelo).", ex:[
-    SS("agacha","panturrilha",3,"6–10 reps",120),
-    SS("legpress","flexora",3,"10–12 reps",90),
-    SS("extensora","abdutora",2,"12–20 reps",60)
+  B:{name:"Treino B — Pernas", extra:"Antes: 10 min de mobilidade (quadril e tornozelo). Pernas fortes e atléticas, sem exagerar no volume: o destaque do físico fica no tronco.", ex:[
+    BL("Pernas",["agacha2"],4,"6–10 reps",150,"Coxa paralela ao chão, joelhos na direção dos pés, tronco firme."),
+    BL("Pernas",["stiff"],3,"8–10 reps",120,"Joelhos levemente dobrados, quadril para trás, barra rente às pernas."),
+    BL("Pernas",["legpress2"],3,"10–12 reps",90,"Lombar no encosto, desça até 90° sem travar os joelhos."),
+    BL("Pernas e core — Superséries",["extensora","flexora"],3,"12–15 reps",75),
+    BL("Pernas e core — Superséries",["avanco","panturrilha"],2,"10–15 reps",75),
+    BL("Pernas e core — Superséries",["elevPernas","bicicleta"],2,"12–15 reps",60)
   ]},
-  C:{name:"Treino C — Peito + Tríceps (máquinas)", extra:"Antes: 10 min de mobilidade (ombro e torácica).", ex:[
-    SS("supInc","elevPernas",3,"8–12 reps",90),
-    SS("supReto","tricMaq",3,"8–12 reps",90),
-    SS("peck","mergulho",3,"10–15 reps",75)
+  C:{name:"Treino C — Costas + Bíceps", extra:"As costas largas fazem o \"V\" do Capitão. Fechar com 20 min de bike leve.", ex:[
+    BL("Costas",["barra"],4,"6–10 reps",120,"Pegada aberta, peito em direção à barra, desça devagar. Sem conseguir 6 reps, use a puxada alta."),
+    BL("Costas",["remadaCurv"],3,"8–10 reps",90,"Tronco a ~45°, coluna neutra, puxe a barra até o umbigo."),
+    BL("Costas",["pulldownBr"],3,"12–15 reps",60,"Braços quase retos, leve a barra até as coxas contraindo a dorsal."),
+    BL("Costas e bíceps — Superséries",["remadaBx2","facePull"],3,"10–12 reps",75),
+    BL("Costas e bíceps — Superséries",["remadaUni","rosca2"],2,"10–12 reps",75),
+    BL("Costas e bíceps — Superséries",["hiperext","deadbug"],2,"12–15 reps",60)
   ]},
-  D:{name:"Treino D — Ombros + Lombar + Core", extra:"Fechar com 20 min de bike leve.", ex:[
-    SS("desenv","hiperext",3,"8–12 reps",90),
-    SS("elevLat","deadbug",3,"12–15 reps",60),
-    SS("cruzInv","bicicleta",3,"12–15 reps",60)
+  D:{name:"Treino D — Ombros + Peito superior + Braços", extra:"Ombros largos e peito alto: a parte que mais lembra o Capitão saindo da máquina. Fechar com 20 min de bike leve.", ex:[
+    BL("Ombros e peito",["desenvH"],3,"8–10 reps",120,"Sentado, encosto reto, desça os halteres até a altura das orelhas."),
+    BL("Ombros e peito",["supIncH"],3,"8–12 reps",90,"Banco a ~30°, desça os halteres até a linha do peito e junte em cima."),
+    BL("Ombros e peito",["elevLatP"],3,"12–15 reps",60,"Um braço de cada vez, cabo passando por trás da perna, suba até a linha do ombro."),
+    BL("Ombros e braços — Superséries",["elevLatH","cruzInvP"],3,"12–20 reps",60),
+    BL("Ombros e braços — Superséries",["roscaInc","paralelas"],2,"8–12 reps",75),
+    BL("Ombros e braços — Superséries",["oMartelo","oCorda"],2,"12–15 reps",60)
   ]},
   BIKE:{name:"Cardio — Bike 45 min", cardio:"45 min de bike em ritmo moderado (zona 2: respiração acelerada, mas consegue falar frases). Semana 1: 30 min."},
   ATIVO:{name:"Descanso ativo", cardio:"Caminhada de 40–60 min ou bike leve 30 min + 10 min de alongamento. Dia de bater os passos."},
@@ -733,17 +821,20 @@ function renderWorkout(){
     bar.hidden=pt.hidden=rs.hidden=true; return;
   }
   bar.hidden=pt.hidden=rs.hidden=false;
-  const done=rec(day).done||{}; let h=`<div class="how" style="margin:0 0 6px">${t.extra}</div>`;
+  const done=rec(day).done||{}; let h=`<div class="how" style="margin:0 0 6px">${t.extra}</div>`, g="", ss=0, anySS=false;
   t.ex.forEach((e,i)=>{
-    const s=setsFor(e,i,day), kid=typeOf(day)+i, items=e.pair;
-    h+=`<h2>Supersérie ${i+1}</h2><div class="block"><div class="bhead"><div class="btitle">${items[0].m.split(" ·")[0]} + ${items[1].m.split(" ·")[0]} — ${s} voltas</div><span class="chip">${e.r}</span></div>`;
-    h+=`<div class="figs">`+items.map((x,xi)=>`<div class="figbox">${F[x.f]||""}<small>${xi?"B · ":"A · "}${x.n}</small></div>`).join("")+`</div>`;
-    items.forEach((x,xi)=>{h+=exRow(x,kid+"k"+xi,xi?"B":"A")});
+    const s=setsFor(e,i,day), kid="v2"+typeOf(day)+i, items=e.ex, sup=items.length>1;
+    if(e.g!==g){h+=`<h2>${e.g}</h2>`;g=e.g}
+    if(sup){ss++;anySS=true}
+    h+=`<div class="block"><div class="bhead"><div class="btitle">${sup?`Supersérie ${ss} — ${s} voltas`:items[0].n}</div><span class="chip">${sup?"":s+"× "}${e.r}</span></div>`;
+    h+=`<div class="figs ${sup?"":"one"}">`+items.map((x,xi)=>`<div class="figbox">${F[x.f]||""}<small>${sup?(xi?"B · ":"A · "):""}${x.n}</small></div>`).join("")+`</div>`;
+    items.forEach((x,xi)=>{h+=exRow(x,kid+"k"+xi,sup?(xi?"B":"A"):"")});
     h+=`<div class="sets">`;
-    for(let j=0;j<s;j++){const sid=i+"-"+j;h+=`<button class="set ${done[sid]?"done":""}" data-s="${sid}" data-rest="${e.rest}">Volta ${j+1}</button>`}
-    h+=`</div><div class="how"><b>A:</b> ${items[0].how}. <b>B:</b> ${items[1].how}. Descanso após a volta: ${e.rest>=120?"2 min":e.rest+" s"}.</div></div>`;
+    for(let j=0;j<s;j++){const sid=i+"-"+j;h+=`<button class="set ${done[sid]?"done":""}" data-s="${sid}" data-rest="${e.rest}">${sup?"Volta":"Série"} ${j+1}</button>`}
+    const rest=e.rest>=120?(e.rest===120?"2 min":"2 min 30 s"):e.rest+" s";
+    h+=`</div><div class="how">${sup?`<b>A:</b> ${items[0].how}. <b>B:</b> ${items[1].how}. Descanso após a volta: ${rest}.`:`${e.how} Descanso: ${rest}.`}</div></div>`;
   });
-  h+=`<div class="how"><b>Como executar:</b> faça o exercício A e, sem descanso, o B. Isso é 1 volta. Descanse e repita.</div>`;
+  if(anySS)h+=`<div class="how"><b>Como executar a supersérie:</b> faça o exercício A e, sem descanso, o B. Isso é 1 volta. Descanse e repita.</div>`;
   w.innerHTML=h; prog();
 }
 function prog(){
